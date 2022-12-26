@@ -87,4 +87,4 @@ def main(exportType, querySearch, howMuch):
     
 
 # ExportType, QuerySearch, HowMuch
-main('excel', 'demokrat', 100)
+main('excel', 'sepak bola', 100)
