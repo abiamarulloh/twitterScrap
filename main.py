@@ -54,14 +54,14 @@ def export_to_excel(data):
     dataToExcel.save()
     print('DataFrame is written to Excel File successfully.')
 
-def get_data(exportType, querySearch, howMuch):
+def get_data(exportType, querySearch, howMuch, since, until):
     if exportType != 'excel' and exportType != 'csv':
         print('=== Export type not support! ====')
         return
 
     print("Getting data "+ exportType +" from Twitter, please wait... ")
     for i, tweet in enumerate(
-        sntwitter.TwitterSearchScraper(querySearch + ' since:2022-01-01 until:2022-12-30').get_items()):
+        sntwitter.TwitterSearchScraper(querySearch + ' since:' + since + ' until:' + until ).get_items()):
         if i >= howMuch: 
             break
 
@@ -81,10 +81,10 @@ def get_data(exportType, querySearch, howMuch):
     elif exportType == 'excel':
         export_to_excel(result)
 
-def main(exportType, querySearch, howMuch):
+def main(exportType, querySearch, howMuch, since, until):
     # Get data From Twitter by search query 
-    get_data(exportType, querySearch, howMuch)
+    get_data(exportType, querySearch, howMuch, since, until)
     
 
-# ExportType, QuerySearch, HowMuch
-main('excel', 'sepak bola', 100)
+# ExportType, QuerySearch, HowMuch, since, until
+main('excel', 'sepak bola', 100, '2022-01-01', '2022-12-30')
